@@ -47,17 +47,17 @@ class ProfilerController extends Controller
         //     'art_fname' => $req->art_fname,
         // ]);
         $artisan = new Artisan;
-        $artisan->artFname=$req->artFname;
-        $artisan->artLname=$req->artLname;
-        $artisan->artUser=$req->artUser;
-        $artisan->artEmail=$req->artEmail;
-        $artisan->artPhone=$req->artPhone;
-        $artisan->artGender=$req->artGender;
-        $artisan->artDate=$req->artDate;
+        $artisan->art_fname=$req->art_fname;
+        $artisan->art_lname=$req->art_lname;
+        $artisan->art_user=$req->art_user;
+        $artisan->art_email=$req->art_email;
+        $artisan->art_phone=$req->art_phone;
+        $artisan->art_gender=$req->art_gender;
+        $artisan->art_age=$req->art_age;
         $artisan->category=$req->category;
-        $artisan->artAddress=$req->artAddress;
+        $artisan->art_address=$req->art_address;
         $artisan->password=$req->password;
-        $artisan->artAbout=$req->artAbout;
+        $artisan->art_about=$req->art_about;
         $result2 = $artisan->save();
 
         if($result2){
