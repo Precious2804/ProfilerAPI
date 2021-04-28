@@ -47,17 +47,17 @@ class ProfilerController extends Controller
         //     'art_fname' => $req->art_fname,
         // ]);
         $artisan = new Artisan;
-        $artisan->art_fname=$req->art_fname;
-        $artisan->art_lname=$req->art_lname;
-        $artisan->art_user=$req->art_user;
-        $artisan->art_email=$req->art_email;
-        $artisan->art_phone=$req->art_phone;
-        $artisan->art_gender=$req->art_gender;
-        $artisan->art_date=$req->art_date;
+        $artisan->artFname=$req->artFname;
+        $artisan->artLname=$req->artLname;
+        $artisan->artUser=$req->artUser;
+        $artisan->artEmail=$req->artEmail;
+        $artisan->artPhone=$req->artPhone;
+        $artisan->artGender=$req->artGender;
+        $artisan->artDate=$req->artDate;
         $artisan->category=$req->category;
-        $artisan->art_address=$req->art_address;
+        $artisan->artAddress=$req->artAddress;
         $artisan->password=$req->password;
-        $artisan->art_about=$req->art_about;
+        $artisan->artAbout=$req->artAbout;
         $result2 = $artisan->save();
 
         if($result2){
@@ -97,5 +97,5 @@ class ProfilerController extends Controller
         } else{
             return ["Result"=>"Operation Failed!!"];
         }
-    }    
+    }  
 }
