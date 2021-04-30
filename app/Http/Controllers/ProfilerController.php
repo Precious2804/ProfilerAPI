@@ -11,7 +11,19 @@ class ProfilerController extends Controller
 {
     //
     function showMembers(Request $req){
-        return Member::all();
+        $result = Member::all();
+
+        if ($result){
+            return ["status"=>"true",
+                    "message"=>"List of Users",
+                    "data"=> $result
+                ];
+        } else{
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
+        }
     }
 
     function addMember(Request $req){
@@ -19,12 +31,23 @@ class ProfilerController extends Controller
         $member->username=$req->username;
         $member->email=$req->email;
         $member->password=$req->password;
+        $details = [
+                    $member->username,
+                    $member->email,
+                    $member->password
+        ];
         $result = $member->save();
 
         if($result){
-            return ["Result"=>"New Data has been Added"];
+            return ["status"=>"true",
+                    "message"=>"New Member has been Added",
+                    "data"=>$details
+        ];
         } else{
-            return ["Result"=>"Operation Failed!!"];
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
         }
     }
     function deleteMember($id){
@@ -32,14 +55,31 @@ class ProfilerController extends Controller
         $result = $member->delete();
 
         if($result){
-            return ["Result"=>"Deleted"];
+            return ["status"=>"true",
+                    "message"=>"Deleted",
+                    "data"=>"$member has been Deleted"
+        ];
         } else{
-            return ["Result"=>"Operation Failed!!"];
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
         }
     }
 
     function showArtisans(){
-        return Artisan::all();
+        $result = Artisan::all();
+        if ($result){
+            return ["status"=>"true",
+                    "message"=>"Artisans",
+                    "data"=> $result
+                ];
+        } else{
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
+        }
     }
 
     function addArtisans(Request $req){
@@ -58,12 +98,31 @@ class ProfilerController extends Controller
         $artisan->art_address=$req->art_address;
         $artisan->password=$req->password;
         $artisan->art_about=$req->art_about;
+        $details = [
+                    $artisan->art_fname,
+                    $artisan->art_lname,
+                    $artisan->art_user,
+                    $artisan->art_email,
+                    $artisan->art_phone,
+                    $artisan->art_gender,
+                    $artisan->art_age,
+                    $artisan->category,
+                    $artisan->art_address,
+                    $artisan->password,
+                    $artisan->art_about
+        ];
         $result2 = $artisan->save();
 
         if($result2){
-            return ["Result"=>"New Data has been Added"];
+            return ["status"=>"true",
+                    "message"=>"New Member has been Added",
+                    "data"=>$details
+        ];
         } else{
-            return ["Result"=>"Operation Failed!!"];
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                     "data"=>""
+                    ];
         }
     }
     function deleteArtisan($id){
@@ -71,14 +130,31 @@ class ProfilerController extends Controller
         $result = $artisan->delete();
 
         if($result){
-            return ["Result"=>"Deleted"];
+            return ["status"=>"true",
+                    "message"=>"Deleted",
+                    "data"=>"$artisan has been Deleted"
+        ];
         } else{
-            return ["Result"=>"Operation Failed!!"];
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
         }
     }
 
     function showRequests(){
-        return User_request::all();
+        $result = User_request::all();
+        if ($result){
+            return ["status"=>"true",
+                    "message"=>"List of Request",
+                    "data"=> $result
+                ];
+        } else{
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
+        }
     }
     function addRequests(Request $req){
         $fetch = new User_request;
@@ -90,12 +166,29 @@ class ProfilerController extends Controller
         $fetch->req_date=$req->req_date;
         $fetch->exp_date=$req->exp_date;
         $fetch->description=$req->description;
+        $details = [
+                    $fetch->id,
+                    $fetch->username,
+                    $fetch->category,
+                    $fetch->sub_category,
+                    $fetch->location,
+                    $fetch->req_date,
+                    $fetch->exp_date,
+                    $fetch->description
+
+        ];
         $result3 = $fetch->save();
 
         if($result3){
-            return ["Result"=>"New Request has been Sent"];
+            return ["status"=>"true",
+                    "message"=>"New Request Added",
+                    "data"=>$details
+        ];
         } else{
-            return ["Result"=>"Operation Failed!!"];
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                     "data"=>""
+                    ];
         }
     }  
 }
