@@ -32,9 +32,9 @@ class ProfilerController extends Controller
         $member->email=$req->email;
         $member->password=$req->password;
         $details = [
-                    $member->username,
-                    $member->email,
-                    $member->password
+                    "username"=>$member->username,
+                    "email"=>$member->email,
+                    "password"=>$member->password
         ];
         $result = $member->save();
 
@@ -99,23 +99,23 @@ class ProfilerController extends Controller
         $artisan->password=$req->password;
         $artisan->art_about=$req->art_about;
         $details = [
-                    $artisan->art_fname,
-                    $artisan->art_lname,
-                    $artisan->art_user,
-                    $artisan->art_email,
-                    $artisan->art_phone,
-                    $artisan->art_gender,
-                    $artisan->art_age,
-                    $artisan->category,
-                    $artisan->art_address,
-                    $artisan->password,
-                    $artisan->art_about
+                    "art_fname"=>$artisan->art_fname,
+                    "art_lname"=>$artisan->art_lname,
+                    "art_user"=>$artisan->art_user,
+                    "art_email"=>$artisan->art_email,
+                    "art_phone"=>$artisan->art_phone,
+                    "art_gender"=>$artisan->art_gender,
+                    "art_age"=>$artisan->art_age,
+                    "category"=>$artisan->category,
+                    "art_address"=>$artisan->art_address,
+                    "art_passord"=>$artisan->password,
+                    "art_about"=>$artisan->art_about
         ];
         $result2 = $artisan->save();
 
         if($result2){
             return ["status"=>"true",
-                    "message"=>"New Member has been Added",
+                    "message"=>"New Artisan has been Added",
                     "data"=>$details
         ];
         } else{
@@ -167,14 +167,14 @@ class ProfilerController extends Controller
         $fetch->exp_date=$req->exp_date;
         $fetch->description=$req->description;
         $details = [
-                    $fetch->id,
-                    $fetch->username,
-                    $fetch->category,
-                    $fetch->sub_category,
-                    $fetch->location,
-                    $fetch->req_date,
-                    $fetch->exp_date,
-                    $fetch->description
+                    "id"=>$fetch->id,
+                    "username"=>$fetch->username,
+                    "category"=>$fetch->category,
+                    "sub_category"=>$fetch->sub_category,
+                    "location"=>$fetch->location,
+                    "req_date"=>$fetch->req_date,
+                    "exp_date"=>$fetch->exp_date,
+                    "description"=>$fetch->description
 
         ];
         $result3 = $fetch->save();
