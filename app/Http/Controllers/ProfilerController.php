@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ProfilerController extends Controller
 {
     //
-    function showMembers(Request $req){
+    function showMembers(Request $req){ 
         $result = Member::all();
 
         if ($result){
