@@ -16,16 +16,16 @@ class CreateArtisansTable extends Migration
         Schema::create('artisans', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('art_fname')->nullable();
-            $table->string('art_lname');
-            $table->string('art_user');
-            $table->string('art_email');
-            $table->string('art_phone');
-            $table->string('art_gender');
-            $table->string('art_age');
-            $table->string('category');
-            $table->string('art_address');
-            $table->string('art_about');
-            $table->string('password');
+            $table->string('art_lname')->nullable();
+            $table->string('art_user')->nullable();
+            $table->string('art_email')->nullable();
+            $table->string('art_phone')->nullable();
+            $table->string('art_gender')->nullable();
+            $table->string('art_age')->nullable();
+            $table->string('category')->nullable();
+            $table->string('art_address')->nullable();
+            $table->string('art_about')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

@@ -30,10 +30,14 @@ class ProfilerController extends Controller
         $member = new Member;
         $member->username=$req->username;
         $member->email=$req->email;
+        $member->phone=$req->phone;
+        $member->address=$req->address;
         $member->password=$req->password;
         $details = [
                     "username"=>$member->username,
                     "email"=>$member->email,
+                    "phone"=>$member->phone,
+                    "address"=>$member->address,
                     "password"=>$member->password
         ];
         $result = $member->save();
