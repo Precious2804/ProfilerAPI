@@ -13,11 +13,11 @@ return [
             'provider' => 'users',
         ],
         'member' => [
-            'driver' => 'session',
+            'driver' => 'jwt',
             'provider' => 'members',
         ],
         'artisan' => [
-            'driver' => 'session',
+            'driver' => 'jwt',
             'provider' => 'artisans',
             'hash' => true
         ],

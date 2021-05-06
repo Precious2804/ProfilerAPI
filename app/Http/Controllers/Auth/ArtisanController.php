@@ -17,7 +17,7 @@ class ArtisanController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['loginArtisan', 'registerArtisan']]);
+        $this->middleware('jwt', ['except' => ['loginArtisan', 'registerArtisan']]);
     }
 
     /**
@@ -113,7 +113,7 @@ class ArtisanController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function logoutArtisan() {
-        auth()->guard('artisan')->logout();
+        Auth::guard('artisan')->logout();
 
         return response()->json(['message' => 'Artisan successfully signed out']);
     }
@@ -132,9 +132,9 @@ class ArtisanController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function artProfile() {
-        return response()->json(auth()->guard('artisan')->user());
-    }
+    // public function artProfile() {
+    //     return response()->json(auth()->guard('artisan')->user());
+    // }
 
     /**
      * Get the token array structure.

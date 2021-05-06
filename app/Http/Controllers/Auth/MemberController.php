@@ -18,7 +18,7 @@ class MemberController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('jwt', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -109,9 +109,14 @@ class MemberController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout() {
-        auth()->guard('member')->logout();
+        Auth::guard('member')->logout();
 
-        return response()->json(['message' => 'Message successfully signed out']);
+        return response()->json(['message' => 'successfully signed out']);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Log out was Successfull'
+        ], 201);
     }
 
     /**
@@ -128,9 +133,9 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function userProfile() {
-        return response()->json(auth()->guard('member')->user());
-    }
+    // public function userProfile() {
+    //     return response()->json(auth()->guard('member')->user());
+    // }
 
     /**
      * Get the token array structure.
