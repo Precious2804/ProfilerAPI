@@ -19,6 +19,7 @@ use App\Http\Middleware\JWT;
 |
 */
 
+/**Routing the ProfilerControllers Starts */
 Route::middleware(['auth:api', 'verify'])->group(function(){
     Route::get("users", [ProfilerController::class, 'showMembers']);
     Route::post("add_user", [ProfilerController::class, 'addMember']);
@@ -29,7 +30,11 @@ Route::middleware(['auth:api', 'verify'])->group(function(){
     Route::delete("delete_user/{id}", [ProfilerController::class, 'deleteMember']);
     Route::delete("delete/{id}", [ProfilerController::class, 'deleteArtisan']); 
 });
+/**Routing the ProfilerControllers Ends */
 
+
+
+/**Routing the MemberControllers Starts */
 Route::middleware(['jwt'])->group(function () {
     Route::post('/logout', [MemberController::class, 'logout']);
     Route::post('/refresh', [MemberController::class, 'refresh']);
@@ -37,7 +42,11 @@ Route::middleware(['jwt'])->group(function () {
 });
 Route::post('/login', [MemberController::class, 'login']);
 Route::post('/register', [MemberController::class, 'register']);
+/**Routing the MemberControllers Ends */
 
+
+
+/**Routing the ArtisanControllers Starts */
 Route::middleware(['jwt'])->group(function(){
     Route::post('/logoutArt', [ArtisanController::class, 'logoutArtisan']);
     Route::post('/refreshArt', [ArtisanController::class, 'refreshArtisan']);
@@ -45,5 +54,6 @@ Route::middleware(['jwt'])->group(function(){
 });
 Route::post('/loginArt', [ArtisanController::class, 'loginArtisan']);
 Route::post('/registerArt', [ArtisanController::class, 'registerArtisan']);
+/**Routing the ArtisanControllers Ends */
 
 
