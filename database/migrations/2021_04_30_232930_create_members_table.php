@@ -14,12 +14,12 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->id()->unique();
-            $table->string('username')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('password')->nullable();
+            $table->uuid('id')->unique();
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('address');
+            $table->string('password');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class CreateArtisansTable extends Migration
     public function up()
     {
         Schema::create('artisans', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->uuid('id')->unique();
             $table->string('art_fname')->nullable();
             $table->string('art_lname')->nullable();
             $table->string('art_user')->nullable();

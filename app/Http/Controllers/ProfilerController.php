@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Models\Artisan;
 use App\Models\User_request;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilerController extends Controller
 {
@@ -27,32 +28,37 @@ class ProfilerController extends Controller
     }
 
     function addMember(Request $req){
-        $member = new Member;
-        $member->username=$req->username;
-        $member->email=$req->email;
-        $member->phone=$req->phone;
-        $member->address=$req->address;
-        $member->password=$req->password;
-        $details = [
-                    "username"=>$member->username,
-                    "email"=>$member->email,
-                    "phone"=>$member->phone,
-                    "address"=>$member->address,
-                    "password"=>$member->password
-        ];
-        $result = $member->save();
+            $member = Member::where('username', $req['username'])->where('email', $req['email']);
 
-        if($result){
-            return ["status"=>"true",
-                    "message"=>"New Member has been Added",
-                    "data"=>$details
-        ];
-        } else{
-            return ["status"=>"false",
-                    "message"=>"Operation Failed",
-                    "data"=>""
-        ];
+            if($member){
+                $response['status'] = false;
+                $response['message'] = "Username / Email Already Exists";
+                $response['code'] = 409;
+                $response['data'] = "";
+            } 
+
+        else{
+            $this->validate($req, [
+                'username' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required|min:11|max:11',
+                'password' => 'required|min:6|confirmed',
+            ]);
+
+            $member = Member::create([
+            'username' =>$req->username,
+            'email' =>$req->email,
+            'phone' =>$req->phone,
+            'address' =>$req->address,
+            'password' =>bcrypt($req->password)
+            ]);
+            $response['status'] = true;
+            $response['message'] = "New Member Has been added";
+            $response['code'] = 200;
+            $response['data'] = $member;
         }
+        
+        return response()->json($response);
     }
     function deleteMember($id){
         $member = Member::find($id);
