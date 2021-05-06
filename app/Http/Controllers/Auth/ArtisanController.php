@@ -114,8 +114,11 @@ class ArtisanController extends Controller
      */
     public function logoutArtisan() {
         Auth::guard('artisan')->logout();
-
-        return response()->json(['message' => 'Artisan successfully signed out']);
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Log out was Successfull'
+        ], 201);
     }
 
     /**

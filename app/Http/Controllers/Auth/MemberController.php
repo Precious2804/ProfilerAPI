@@ -111,8 +111,6 @@ class MemberController extends Controller
     public function logout() {
         Auth::guard('member')->logout();
 
-        return response()->json(['message' => 'successfully signed out']);
-
         return response()->json([
             'status' => true,
             'message' => 'Log out was Successfull'
