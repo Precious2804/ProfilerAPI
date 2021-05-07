@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\Artisan;
+use App\Models\Category;
 use App\Models\User_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -201,4 +202,19 @@ class ProfilerController extends Controller
                     ];
         }
     }  
+
+    function showCategories(){
+        $result = Category::all();
+        if ($result){
+            return ["status"=>"true",
+                    "message"=>"List of Categories",
+                    "data"=> $result
+                ];
+        } else{
+            return ["status"=>"false",
+                    "message"=>"Operation Failed",
+                    "data"=>""
+        ];
+        }
+    }
 }

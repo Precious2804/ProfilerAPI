@@ -20,16 +20,17 @@ use App\Http\Middleware\JWT;
 */
 
 /**Routing the ProfilerControllers Starts */
-Route::middleware(['auth:api', 'verify'])->group(function(){
-    Route::get("users", [ProfilerController::class, 'showMembers']);
-    Route::post("add_user", [ProfilerController::class, 'addMember']);
-    Route::get("artisans", [ProfilerController::class, 'showArtisans']);
-    Route::post("add_artisans", [ProfilerController::class, 'addArtisans']);
-    Route::get("requests", [ProfilerController::class, 'showRequests']);
-    Route::post("add_requests", [ProfilerController::class, 'addRequests']);
-    Route::delete("delete_user/{id}", [ProfilerController::class, 'deleteMember']);
-    Route::delete("delete/{id}", [ProfilerController::class, 'deleteArtisan']); 
-});
+Route::get("users", [ProfilerController::class, 'showMembers']);
+Route::post("add_user", [ProfilerController::class, 'addMember']);
+Route::get("artisans", [ProfilerController::class, 'showArtisans']);
+Route::post("add_artisans", [ProfilerController::class, 'addArtisans']);
+Route::get("requests", [ProfilerController::class, 'showRequests']);
+Route::post("add_requests", [ProfilerController::class, 'addRequests']);
+Route::delete("delete_user/{id}", [ProfilerController::class, 'deleteMember']);
+Route::delete("delete/{id}", [ProfilerController::class, 'deleteArtisan']); 
+
+/**Displaying the categories */
+Route::get('categories', [ProfilerController::class, 'showCategories']);
 /**Routing the ProfilerControllers Ends */
 
 
