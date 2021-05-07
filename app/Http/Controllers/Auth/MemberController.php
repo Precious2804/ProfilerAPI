@@ -50,7 +50,8 @@ class MemberController extends Controller
             'status' => true,
             'message' => "Login Was Successful",
             "data" => auth()->guard('member')->user()
-        ], 201)->header('Authorization', "Bearer ".$token);
+        ], 201);
+        return $this->createNewToken($token);
     }
 
     /**
