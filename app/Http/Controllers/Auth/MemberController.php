@@ -49,9 +49,9 @@ class MemberController extends Controller
         return response([
             'status' => true,
             'message' => "Login Was Successful",
-            "data" => auth()->guard('member')->user()
-        ], 201)->$token;
-        return $this->createNewToken($token);
+            "data" => auth()->guard('member')->user(),
+            $this->createNewToken($token)
+        ], 201);
     }
 
     /**
